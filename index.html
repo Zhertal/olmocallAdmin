@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Administrador</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="/admin/js/functions.js"></script>
+	<script type="text/javascript" src="/admin/js/jspdf.min.js"></script>
+	<style type="text/css">li{cursor: pointer;}</style>
+</head>
+<body>
+	<nav class="navbar navbar-dark bg-dark">
+		<span class="navbar-brand mb-0 h1">Olmocall</span>
+	</nav>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-3">
+				<br>
+				<h6 class="card-title">Empleados: </h6>
+				<ul class="list-group" id="selectBox">
+					<!--Aqui van los registros de los usuarios-->
+				</ul>
+			</div>
+			<div class="col-9">
+				<br>
+				<h5 class="card-title">Reporte mensual de acuerdos <i id="employee"></i>:</h5>
+				<br>
+				<div>
+					<table class="table table-dark">
+						<thead>
+							<tr>
+								<th scope="col">#</th>
+								<th scope="col">Deudor</th>
+								<th scope="col">Empleado</th>
+								<th scope="col">Fecha</th>
+								<th scope="col">Observaciones</th>
+							</tr>
+						</thead>
+						<tbody id="resultado">
+							<!--Aqui van los resultados de la consulta-->
+						</tbody>
+					</table>
+					<button id="printButton" class='btn btn-primary btn-sm' onClick="printReport()" disabled>Imprimir reporte</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
