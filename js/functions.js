@@ -8,11 +8,11 @@ function listEmployees(){
 	fetch('http://localhost:2828/listEmployees')
 	.then((respuesta) => {
 		return respuesta.json();
-	} ).then((respuesta) => {
+	}).then((respuesta) => {
 		respuesta.forEach(function (registro){
 			document.getElementById('selectBox').innerHTML +=
-			"<li class='list-group-item' onClick='makeReport(" + registro.idEmpleado + ")'>" + 
-				registro.nombre + "</li>"
+			"<li class='list-group-item' onClick='makeReport(" + registro.id + ")'>" + 
+				registro.name + "</li>"
 		});
 	})
 }
@@ -25,7 +25,7 @@ function makeReport(id){
 		return respuesta.json();
 	} ).then((respuesta) => {
 		respuesta.forEach(function (registro){
-		document.getElementById('employee').innerHTML = registro.nombre;
+		document.getElementById('employee').innerHTML = registro.name;
 		});
 	})
 	//Obtener el reporte para llenar la tabla
@@ -36,13 +36,14 @@ function makeReport(id){
 		return respuesta.json();
 	} ).then((respuesta) => {
 		respuesta.forEach(function (registro){
-		document.getElementById('resultado').innerHTML =
+		document.getElementById('resultado').innerHTML +=
 		    "<tr>" +
 		    	"<td scope='row'>" + registro.idRegistro + "</th>" +
 		    	"<td>" + registro.idDeudor + "</td>" +
 		    	"<td>" + registro.idEmpleado + "</td>" +
-		    	"<td>" + registro.fecha + "</td>" +
+		    	"<td>" + registro.fechaRegistro + "</td>" +
 		    	"<td>" + registro.observaciones + "</td>" +
+		    	"<td>" + registro.fechaPago + "</td>" +
 		    "</tr>";
 		});
 	})
@@ -69,6 +70,7 @@ function printReport(){
 	doc.text(35, 20, "#Empleado");//Id del empleado
 	doc.text(60, 20, "Fecha");//Fecha
 	doc.text(85, 20, "Observaciones");//Observaciones
+	doc.text(150, 20, "Fecha de pago");//Observaciones
 	for (i = 0; i < items.length; i++) {
 	    itemValues = items[i].getElementsByTagName('td');
 	    doc.text(5, (25 + (i*5)), itemValues[0].innerHTML);//Id del registro
@@ -76,10 +78,12 @@ function printReport(){
 	    doc.text(35, (25+ (i*5)), itemValues[2].innerHTML);//Id del empleado
 	    doc.text(60, (25+ (i*5)), itemValues[3].innerHTML);//Fecha
 	    doc.text(85, (25 + (i*5)), itemValues[4].innerHTML);//Observaciones
+	    doc.text(150, (25 + (i*5)), itemValues[5].innerHTML);//Fecha de pago
 	}
 	doc.line(10, 15, 10, 280)//Linea divisora del documento
 	doc.line(33, 15, 33, 280)//Linea divisora del documento
 	doc.line(55, 15, 55, 280)//Linea divisora del documento
 	doc.line(80, 15, 80, 280)//Linea divisora del documento
+	doc.line(145, 15, 145, 280)//Linea divisora del documento
 	doc.save("Reporte Mensual");
 }
